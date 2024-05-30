@@ -1,0 +1,201 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  background: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  min-width: 40rem;
+  margin: auto;
+}
+.log-in-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.enter-buttton {
+  width: 10px;
+}
+.third img {
+  width: 50px;
+  background: burlywood;
+  height: 40px;
+}
+.third {
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+  align-items: center;
+}
+.third input {
+  border: none;
+  outline: none;
+  width: 130px;
+  height: 45px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+.logo {
+}
+.logo a {
+  width: 10px;
+}
+.logo a img {
+  width: 100%;
+}
+.log-in-page div p {
+  font-size: 25px;
+}
+.main-account {
+  margin: auto;
+  opacity: 0;
+  transition: 5s;
+}
+.total-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px 6px;
+  margin: auto;
+}
+.date-of-balance p {
+  font-size: 20px;
+  justify-content: ;
+  display: flex;
+  padding-top: 10px;
+}
+.total-balance {
+  font-size: 55px;
+}
+.transaction-holder {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: ;
+  flex-wrap: wrap;
+}
+.transaction-holder > * {
+  flex-basis: %;
+  flex-shrink: 2;
+  flex-grow: 1;
+}
+.transaction-container {
+  background: white;
+  flex-basis: 50%;
+  overflow-y: scroll;
+  border-radius: 10px;
+}
+.transaction-container::-webkit-scrollbar {
+  display: none;
+}
+.transaction-container > * {
+}
+.inside-transaction-container {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 0.5px solid rgb(198, 194, 188);
+  padding: 25px;
+  width: 100%;
+}
+.inside-transaction-container .status-of-transaction {
+  background: green;
+  padding: 4px 11px;
+  font-size: 14px;
+  border-radius: 15px;
+  color: aliceblue;
+}
+.inside-transaction-container .date-of-transction {
+  margin-right: auto;
+}
+.transaction-amount {
+  font-size: 18px;
+}
+.transaction-control {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  flex-basis: 30%;
+  flex-shrink: 1;
+}
+
+.transaction-control > * {
+  border-radius: 13px;
+}
+.transaction-control .all {
+  background: linear-gradient(to top left, #ffb003, #ffcb03);
+  padding: 30px 50px;
+  padding-top: ;
+  max-width: 38.5rem;
+}
+.all {
+}
+.all .trans {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.transaction-control .green {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+}
+.transaction-holder .red {
+  background: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+.all .inside {
+  display: flex;
+  gap: 15px;
+  font-size: 20px;
+}
+.all .inside input {
+  width: 100px;
+  height: 33px;
+  text-align: center;
+  font-size: 20px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+}
+.all .inside img {
+  height: 33px;
+  border-radius: 5px;
+}
+.all .inside p {
+  margin-top: 12px;
+  font-size: 20px;
+}
+.summary {
+  display: flex;
+  margin: auto;
+  flex-grow: 1;
+
+  justify-content: space-around;
+  padding: 25px 2px;
+}
+.summary div p {
+  font-size: 10px;
+}
+.summary div p .gr {
+  color: green;
+  font-size: 25px;
+}
+.summary div p .re {
+  color: red;
+  font-size: 25px;
+}
+.red {
+  background: red;
+}
+.green {
+  background: green;
+}
+.dis {
+  opacity: 1;
+  transition: 5s;
+}

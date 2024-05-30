@@ -1,0 +1,108 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" href="image.png" type="image/x-icon" />
+    <link rel="stylesheet" href="bank.css" />
+    <script defer src="bank.js"></script>
+  </head>
+
+  <body>
+    <div class="log-in-page">
+      <div>
+        <p class="welcome-message">Log in to get started</p>
+      </div>
+      <div class="logo">
+        <a href=""></a><img src="image.png" alt="" width="70px" />
+      </div>
+      <div class="third">
+        <input class="user" type="text" placeholder="USER" />
+        <input class="password" type="password" placeholder="PIN" />
+        <img class="enter" src="image copy.png" alt="" />
+      </div>
+    </div>
+
+    <!--main-account-->
+    <section class="main-account">
+      <div class="total-info-container">
+        <div class="date-of-balance">
+          <h2>Current balance</h2>
+          <p>As of <span>26/05/2024,01:07</span></p>
+        </div>
+        <div class="total-balance">
+          <p class="bal">25 952,59 Eur</p>
+        </div>
+      </div>
+      <div class="transaction-holder">
+        <div>
+          <div class="transaction-container">
+            <div class="inside-transaction-container">
+              <p class="status-of-transaction">8 Deposit</p>
+              <p class="date-of-transction">12/03/2020</p>
+              <p class="transaction-amount">1300,00 euro</p>
+            </div>
+          </div>
+          <div class="summary">
+            <div>
+              <p>IN <span class="gr in-sum">27 035,20 eur</span></p>
+            </div>
+            <div>
+              <p>OUT <span class="re out-sum">1082,61 eur</span></p>
+            </div>
+
+            <div>
+              <p>INTEREST <span class="gr interest-sum">323,46 eur</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="transaction-control">
+          <div class="yellow all">
+            <p class="trans">Transfer money</p>
+            <div class="inside">
+              <div>
+                <input type="text" />
+                <p>Transfer to</p>
+              </div>
+              <div>
+                <input type="text" />
+                <p>Amount</p>
+              </div>
+              <img src="image copy.png" width="35px" />
+            </div>
+          </div>
+
+          <div class="green all">
+            <p class="trans">Request loan</p>
+            <div class="inside">
+              <div>
+                <input type="text" />
+                <p>Amount</p>
+              </div>
+              <img src="image copy.png" width="35px" />
+            </div>
+          </div>
+          <div class="red all">
+            <p class="trans">Close account</p>
+            <div class="inside">
+              <div>
+                <input type="text" />
+                <p>Confirm user</p>
+              </div>
+              <div>
+                <input type="text" />
+                <p>Confirm pin</p>
+              </div>
+              <img src="image copy.png" width="35px" />
+            </div>
+          </div>
+          <div>
+            <p>you will be logged out in <span>01:22</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div></div>
+    </section>
+  </body>
+</html>
