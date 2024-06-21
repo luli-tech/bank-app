@@ -1,10 +1,9 @@
-"use strict";
-
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: "olabode micheal",
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
+  interestRate: 1.2,
   pin: 1111,
+  tdates: [],
 };
 
 const account2 = {
@@ -30,19 +29,6 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ["USD", "United States dollar"],
-  ["EUR", "Euro"],
-  ["GBP", "Pound sterling"],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
 let insideTransaction = document.querySelector(".transaction-container");
 let body = document.querySelector(".main-account");
 let balanceContainer = document.querySelector(".bal");
@@ -53,17 +39,39 @@ let user = document.querySelector(".user");
 let password = document.querySelector(".password");
 let enter = document.querySelector(".enter");
 let welcomeMessage = document.querySelector(".welcome-message");
-let currentAccount;
+let receiver = document.querySelector(".receiver");
+let transAmount = document.querySelector(".transferAmount");
+let transfer = document.querySelector(".transfer");
+let tf = document.querySelectorAll(".tf");
+let confirmUser = document.querySelector(".confirm-user");
+let confirmPin = document.querySelector(".confirm-pin");
+let closeAcc = document.querySelectorAll(".close-acc");
+let closeBtn = document.querySelector(".close-btn");
+let loanAmount = document.querySelector(".loan-amount");
+let loanBtn = document.querySelector(".loan-btn");
+let timeout = document.querySelector(".timeout");
+let sort = document.querySelector(".sort");
+let clearClose = document.querySelectorAll(".clear-close");
+let clearLoan = document.querySelector(".clear-loan");
+let dates = document.querySelector(".balance-date");
+let dateoftransaction = document.querySelector(".date-of-transction");
 
-const displayMovement = (movement) => {
+let currentAccount;
+let clearInput = (clea) => {
+  clea.forEach((m) => (m.value = ""));
+  console.log(clea);
+};
+
+const displayMovement = (movement, sorted = false) => {
   insideTransaction.innerHTML = "";
-  movement.forEach((mov, i) => {
+  movs = sorted ? movement.slice().sort((a, b) => a - b) : movement;
+  movs.forEach((mov, i) => {
     let transaction = `
                 <div class="inside-transaction-container">
                   <p class="status-of-transaction ${
                     mov > 0 ? "green" : "red"
                   }">${i + 1} ${mov > 0 ? "deposit" : "withdraw"}</p>
-                  <p  class="date-of-transction">12/03/2020</p>
+                  <p  class="date-of-transction">${computeDates()}</p>
                   <p class="transaction-amount">${Math.abs(mov)} €</p>
                   </div>`;
     insideTransaction.insertAdjacentHTML("afterbegin", transaction);
@@ -71,10 +79,10 @@ const displayMovement = (movement) => {
 };
 
 let totalBalance = (balance) => {
-  let bal = balance.reduce((m, i) => m + i, 0);
-  balanceContainer.textContent = `${bal} €`;
+  balance.totalAmount = balance.movements.reduce((m, i) => m + i, 0);
+  balanceContainer.textContent = `${balance.totalAmount} €`;
+  return balance;
 };
-totalBalance(movements);
 
 let computedUsername = (name) => {
   name.forEach((acc) => {
@@ -105,16 +113,32 @@ let amountRecieved = (amount) => {
     .reduce((amount, mov) => amount + mov, 0);
   moneyInterest.textContent = `${interestAmount} €`;
 };
+let content;
+let computeDates = () => {
+  let transactionDates = new Date();
+  let day = `${transactionDates.getDate()}`.padStart(2, 0);
+  let month = `${transactionDates.getMonth()}`.padStart(2, 0);
+  let year = transactionDates.getFullYear();
+  content = `${day}/${month}/${year}`;
+  return content;
+};
 
 let implimentLogin = (real) => {
   currentAccount = real.find((acc) => user.value === acc?.username);
-  if (Number(password.value) === currentAccount?.pin) {
+  if (+password.value === currentAccount?.pin) {
     amountRecieved(currentAccount.movements);
     displayMovement(currentAccount.movements);
-    welcomeMessage.textContent = `Welcome Onboard, ${
-      currentAccount.owner.split(" ")[0]
-    }`;
-    body.classList.add("dis");
+    totalBalance(currentAccount);
+    let ola = currentAccount.owner
+      .split(" ")
+      .splice(0, 1)
+      .map((a) => a.toUpperCase()[0][0]);
+    let second = currentAccount.owner.split(" ")[0].slice(1);
+    let all = ola.concat(second).join("");
+    welcomeMessage.textContent = `Welcome Onboard, ${all}`;
+    body.style.display = "block";
+    dates.textContent = `As at ${computeDates()}`;
+    interval();
   }
 };
 
@@ -122,3 +146,69 @@ enter.addEventListener("click", (e) => {
   implimentLogin(accounts);
   password.value = user.value = "";
 });
+
+transfer.addEventListener("click", () => {
+  let transferAmountto = +transAmount.value;
+  let cur = accounts.find((acc) => acc.username === receiver.value);
+  if (
+    cur?.username &&
+    currentAccount.username !== cur.username &&
+    transferAmountto <= currentAccount.totalAmount
+  ) {
+    currentAccount.movements.push(-transferAmountto);
+    cur.movements.push(transferAmountto);
+    updateUi(currentAccount);
+  } else {
+    alert("error");
+  }
+  clearInput(tf);
+  console.log(transferAmountto);
+});
+
+let updateUi = (acc) => {
+  amountRecieved(acc.movements);
+  displayMovement(acc.movements);
+  totalBalance(acc);
+};
+
+closeBtn.addEventListener("click", () => {
+  if (
+    confirmUser.value === currentAccount.username &&
+    +confirmPin.value === currentAccount.pin
+  ) {
+    let index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    body.style.display = "none";
+    clearInput(clearClose);
+  }
+});
+loanBtn.addEventListener("click", () => {
+  let lAmount = +loanAmount.value;
+  setTimeout(() => {
+    currentAccount.movements.push(lAmount);
+    updateUi(currentAccount);
+  }, 2000);
+
+  clearLoan.value = "";
+  console.log(lAmount);
+});
+let sorted = false;
+sort.addEventListener("click", () => {
+  displayMovement(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
+
+let time = 10;
+
+let interval = setInterval(() => {
+  let min = String(Math.trunc(time / 60)).padStart(2, 0);
+  let sec = String(time % 60).padStart(2, 0);
+  timeout.textContent = `${min}:${sec}`;
+  if (time < 1) {
+    body.style.display = "none";
+    clearInterval(interval);
+  }
+  time--;
+}, 1000);
