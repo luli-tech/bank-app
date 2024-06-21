@@ -13,11 +13,21 @@ body {
   min-width: 40rem;
   margin: auto;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 .log-in-page {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+@media (max-width: 800px) {
+  .log-in-page {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+  }
 }
 .enter-buttton {
   width: 10px;
@@ -55,7 +65,7 @@ body {
 }
 .main-account {
   margin: auto;
-  opacity: 0;
+  display: none;
   transition: 5s;
 }
 .total-info-container {
@@ -91,6 +101,7 @@ body {
   background: white;
   flex-basis: 50%;
   overflow-y: scroll;
+  height: 36rem;
   border-radius: 10px;
 }
 .transaction-container::-webkit-scrollbar {
@@ -198,4 +209,7 @@ body {
 .dis {
   opacity: 1;
   transition: 5s;
+}
+.last {
+  text-align: right;
 }
