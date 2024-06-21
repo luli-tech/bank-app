@@ -111,7 +111,7 @@ let amountRecieved = (amount) => {
     .map((amount) => (amount * 1.2) / 100)
     .filter((amount) => amount >= 1)
     .reduce((amount, mov) => amount + mov, 0);
-  moneyInterest.textContent = `${interestAmount} €`;
+  moneyInterest.textContent = `${Math.round(interestAmount)} €`;
 };
 let content;
 let computeDates = () => {
