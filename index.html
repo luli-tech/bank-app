@@ -28,7 +28,7 @@
       <div class="total-info-container">
         <div class="date-of-balance">
           <h2>Current balance</h2>
-          <p>As of <span>26/05/2024,01:07</span></p>
+          <p class="balance-date"></p>
         </div>
         <div class="total-balance">
           <p class="bal">25 952,59 Eur</p>
@@ -54,6 +54,9 @@
             <div>
               <p>INTEREST <span class="gr interest-sum">323,46 eur</span></p>
             </div>
+            <div>
+              <button class="sort">sort</button>
+            </div>
           </div>
         </div>
         <div class="transaction-control">
@@ -61,14 +64,14 @@
             <p class="trans">Transfer money</p>
             <div class="inside">
               <div>
-                <input type="text" />
+                <input class="receiver tf" type="text" />
                 <p>Transfer to</p>
               </div>
               <div>
-                <input type="text" />
+                <input class="transferAmount tf" value=" " type="text" />
                 <p>Amount</p>
               </div>
-              <img src="image copy.png" width="35px" />
+              <img class="transfer" src="image copy.png" width="35px" />
             </div>
           </div>
 
@@ -76,28 +79,30 @@
             <p class="trans">Request loan</p>
             <div class="inside">
               <div>
-                <input type="text" />
+                <input class="loan-amount clear-loan" type="text" />
                 <p>Amount</p>
               </div>
-              <img src="image copy.png" width="35px" />
+              <img class="loan-btn" src="image copy.png" width="35px" />
             </div>
           </div>
           <div class="red all">
             <p class="trans">Close account</p>
             <div class="inside">
               <div>
-                <input type="text" />
+                <input type="text" class="confirm-user close-acc clear-close" />
                 <p>Confirm user</p>
               </div>
               <div>
-                <input type="text" />
+                <input type="text" class="close-acc Confirm-pin clear-close" />
                 <p>Confirm pin</p>
               </div>
-              <img src="image copy.png" width="35px" />
+              <img class="close-btn" src="image copy.png" width="35px" />
             </div>
           </div>
           <div>
-            <p>you will be logged out in <span>01:22</span></p>
+            <p class="last">
+              you will be logged out in <span class="timeout">time out</span>
+            </p>
           </div>
         </div>
       </div>
